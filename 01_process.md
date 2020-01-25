@@ -1,7 +1,7 @@
 
-# security audit process
+# Security audit process
 
-## rules of engagement
+## Rules of engagement
 
 Formal upfront agreement outlining responsibilities, liabilities and scope of work.
 
@@ -12,7 +12,7 @@ Formal upfront agreement outlining responsibilities, liabilities and scope of wo
 * the deliverables and expectations
 * the statement of work
 
-## goals and scope
+## Goals and scope
 
 Ask questions...
 
@@ -154,9 +154,7 @@ or
 
 No more than 2-3 pages long. Give a brief and concise overview of the whole engagement. eg.
 
-```
-The purpose of this assessment and report is identify any web application issues that affect ACME CORPs e-commerce application and the web server hosting it, and to provide solutions to remedy the same issues.
-```
+> The purpose of this assessment and report is identify any web application issues that affect ACME CORPs e-commerce application and the web server hosting it, and to provide solutions to remedy the same issues.
 
 * use metrics, risk mitigation to demonstrate money loss
 * show graphs and statistics
@@ -186,7 +184,7 @@ Also use descriptions from NIST or osvdb.org
 
 You may need to elaborate the descriptions to make the information more relevant to the clients context and situation specifics.
 
-## vulnerabilities by type
+## Vulnerabilities by type
 
 For each vulnerability found use a schema:
 
@@ -211,7 +209,7 @@ You should also assign an impact value using:
 * exposure (remote access or privileged account)
 * availability (obscure or metasploit module)
 
-## exploitation proof
+## Exploitation proof
 
 keep it short and keep redundant information to a minimum.
 
