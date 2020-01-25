@@ -211,14 +211,10 @@ You should also assign an impact value using:
 
 ## Exploitation proof
 
-Keep it short and keep redundant information to a minimum.
-
-Include snapshots and exploit payloads so that the attack can be reproduced.
-
-Do not show your workings.. only show a small example POC to demonstrate the vulnerability is present.
-
-Only include one impactful outcome per exploitation... work laterally.
-
+* keep it short and keep redundant information to a minimum.
+* include snapshots and exploit payloads so that the attack can be reproduced.
+* do not show your workings.. only show a small example POC to demonstrate the vulnerability is present.
+* only include one impactful outcome per exploitation... work laterally.
 
 ## Remediation report
 
