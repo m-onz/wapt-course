@@ -211,9 +211,9 @@ You should also assign an impact value using:
 
 ## Exploitation proof
 
-keep it short and keep redundant information to a minimum.
+Keep it short and keep redundant information to a minimum.
 
-include snapshots and exploit payloads so that the attack can be reproduced.
+Include snapshots and exploit payloads so that the attack can be reproduced.
 
 Do not show your workings.. only show a small example POC to demonstrate the vulnerability is present.
 
@@ -230,9 +230,9 @@ Suggest a way to inform developers immediately should a high risk vulnerability 
 
 ### Example long term remediation
 
-* implentation of SSDLC (secure software development cycle)
-* employ security checks early in business & development process
-* use different platforms, version of frameworks
+* Implentation of SSDLC (secure software development cycle)
+* Employ security checks early in business & development process
+* Use different platforms, version of frameworks
 
 ## Example reports
 
