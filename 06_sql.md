@@ -370,4 +370,6 @@ IF EXISTS (SELECT * FROM users WHERE username = 'monz') BENCHMARK(1000000, MD5(1
 
 # TOOL : SQLMap
 
-todo...
+SQLMap is a tool used for detecting and exploiting sql injection.
+
+> WARNING! Always test by hand first before using an automated tool because it may crash your targets system. You can correctly configure your tool if you know what your doing. Blindly running tools makes you a script kiddie not a professional.
