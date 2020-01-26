@@ -254,6 +254,7 @@ SELECT 1 UNION 'a';
 ```
 
 ### Table of DBMS type enforcing
+```
 -----------------------------------------
 
 DBMS               |   TYPE ENFORCING
@@ -262,6 +263,7 @@ MySQL              |   No
 MS SQL server      |   Yes
 Oracle             |   Yes
 PostgreSQL         |   Yes
+```
 
 ### Finding out the field types
 
