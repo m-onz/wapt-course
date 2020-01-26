@@ -22,7 +22,7 @@ Databases can contain sensitive information not limited too...
 > SQL: Structured Query Langague
 
 ## Connector example
-
+```
           application
         |             |
 driver manager        |    
@@ -32,7 +32,7 @@ driver manager        |
     Connector/ODBC    |
             |         |
             MySQL Server
-
+```
 
 =================================
 
