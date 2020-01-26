@@ -88,7 +88,7 @@ Use the ALL operator to prevent this behaviour...
 
 ## SQL statements: Comments
 
-* # (hash)
+* \# (hash)
 * -- (two dashes followed by  space)
 
 ```
@@ -274,9 +274,9 @@ Finding the data types used in the query is again an iterative process where you
 e.g.
 
 ```
-\` UNION SELECT 1, null; -- -
-\` UNION SELECT 1, 1; -- - # gives an error
-\` UNION SELECT 1, 'a'; -- - # works inferring second column is a string type
+' UNION SELECT 1, null; -- -
+' UNION SELECT 1, 1; -- - # gives an error
+' UNION SELECT 1, 'a'; -- - # works inferring second column is a string type
 ```
 
 The columns and field types are generally needed to perform data extraction.
