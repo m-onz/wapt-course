@@ -111,3 +111,84 @@ HTML5 provides data storage via some APIs namely...
 * sessionStorage
 
 Cookies are limited to 4KB
+
+LocalStorage API
+
+```
+localStorage.setItem('key', 'value')
+var thing = localStorage.getItem('key')
+localStorage.removeItem('key')
+localStorage.clear()
+```
+
+sessionStorage API
+
+```
+sessionStorage.setItem()
+" getItem
+" removeItem
+" clear
+```
+
+Local storage and session storage are managed via JavaScript so they can be stolen through XSS attacks.
+
+```
+// logic..
+// loop through localStorage
+// store results
+// send to another server
+```
+
+## Websockets
+
+* Connection established by upgrading existing HTTP connection to a *websocket* connection
+* Supported by browsers :: ws:// && wss:// secure protocol
+* HTTP Standard ports 80, 443
+* Full duplex communication
+* minimal packet overhead
+* no polling overhead
+* real tcp connections allow low latency
+
+Websocket API.
+
+```
+var ws = new WebSocket('ws://<target_url>')
+
+ws.onopen = function (e) {
+  ws.send('hello')
+}
+
+ws.onmessage = function (m) { console.log(m.data); }
+
+```
+
+You should check that data is sanitized correctly as websockets can provide an injection point.
+
+## Sandboxed frames
+
+When a website hosts third party contents through iframes. Despite SOP the `location` property of each frame is always writable.
+
+This could be dangerous as an iframe could redirect visitors website by setting the location property of its parent document.
+
+One technique for preventing this is installing an `onbeforeunload` event in the main document. This event will be triggered if a child iframe attempts to change the main documents location property.
+
+If the main document and iframe are on the same origin they can access each other.
+
+With HTML5 you can add a `sandbox` attribute to an iframe element to effectively disable JavaScript execution from within the iframe... by default this means...
+
+* forms, scripts and plugins are disabled
+* features that trigger automatically are blocked
+* no links can target other browsing contexts
+  - eg, a link clicked in an iframe cannot open the page in the context of the parent document.
+
+  Some options can be specified for example
+
+  * allow-script
+  * allow-forms
+  * allow-top-navigation
+    - this flag allows the iframe content to navigate its top level browsing context.
+
+# References
+
+* http://www.w3.org/TR/cors/
+* https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
