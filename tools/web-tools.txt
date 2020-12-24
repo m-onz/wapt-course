@@ -1,0 +1,12 @@
+
+# web tools
+
+gobuster
+opendoor
+dirbuster
+burp
+XXSSer
+hydra
+ZAProxy
+nikto
+sqlmap
