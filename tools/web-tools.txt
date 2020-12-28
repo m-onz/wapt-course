@@ -10,3 +10,13 @@ hydra
 ZAProxy
 nikto
 sqlmap
+
+## XSS
+
+* https://html5sec.org/innerhtml/?compact#hello
+* XSS prevention https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.md
+* https://github.com/cure53/H5SC
+* https://html5sec.org
+* https://www.slideshare.net/x00mario/the-innerhtml-apocalypse
+* http://www.thespanner.co.uk/2014/05/06/mxss/
+* http://www.businessinfo.co.uk/labs/mxss/index.php?ie=10
