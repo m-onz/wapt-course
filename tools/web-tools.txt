@@ -11,6 +11,10 @@ ZAProxy
 nikto
 sqlmap
 
+## payloads
+
+* https://github.com/lanjelot/PayloadsAllTheThings
+
 ## XSS
 
 * https://html5sec.org/innerhtml/?compact#hello
@@ -20,3 +24,17 @@ sqlmap
 * https://www.slideshare.net/x00mario/the-innerhtml-apocalypse
 * http://www.thespanner.co.uk/2014/05/06/mxss/
 * http://www.businessinfo.co.uk/labs/mxss/index.php?ie=10
+
+## XPATH
+
+* https://tomforb.es/xcat-1.0-released-or-xpath-injection-issues-are-severely-underrated/
+* https://github.com/orf/xcat
+
+## SSRF
+
+* https://github.com/swisskyrepo/SSRFmap
+
+## BRUTE FORCE
+
+* https://github.com/lanjelot/patator
+
