@@ -36,8 +36,33 @@ In contrast to HTML, you can use any naming convention you wish for elements; as
 
 ## Attributes
 
-```
+```xml
 <user id=`1`>
 ```
 Elements can have attributes, in this example the user element has the attribute  id   set to  `1`.
+
+## elements with a value
+
+```xml
+<username>monz</username>
+```
+This element contains text (instead of a child element). The text is considered to the value of the element.
+
+## comments
+
+```xm
+<!-- Comment -->
+```
+
+# XPath
+
+XPath (XML Path Language) is a standard language used to query and navigate XML documents. 
+
+XPath makes use of path expressions to select nodes from an XML document.
+
+```xpath
+//user[username/text()='<USERNAME>' and password/text()='<PASSWORD']
+```
+
+Where `<USERNAME>` and `<PASSWORD` are input values, inserted by the user, therefore, they should be sanitized before being used.
 
