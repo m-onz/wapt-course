@@ -228,6 +228,12 @@ Where $1 is a numerical placeholder (that you can iterate and discover every use
 'or substring(/users/user[position()=1]/username,1,1)='c
 ```
 
+## XCat
+An example using the XCat tool
+```
+xcat --method=GET <TARGET> countryID=1 countryID "Italy" run retrieve --output ./test.xml
+```
+
 ## Defences
 
 Always filter input data before providing it to XPath queries.
