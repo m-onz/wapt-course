@@ -54,7 +54,7 @@ This element contains text (instead of a child element). The text is considered 
 <!-- Comment -->
 ```
 
-# XPath
+## XPath
 
 XPath (XML Path Language) is a standard language used to query and navigate XML documents. 
 
@@ -96,7 +96,7 @@ Where `<USERNAME>` and `<PASSWORD` are input values, inserted by the user, there
 //user[username/text()='monz' and password/text()='pass']
 ```
 
-# SQL Differences
+## SQL Differences
 
 * XPath does not permit comment expressions
 * XPath is case sensitive
@@ -125,7 +125,7 @@ Will most likely show either the first or last entry if successful.
 ```
 Will hopefully have a different response and you can confirm XPath injection exists.
 
-# Exploiting XPath injection
+## Exploiting XPath injection
 
 A successful injection can lead information disclosure (downloading the entire xml document and contents) and possibly allow further attacks like bypassing authentication.
 
@@ -228,4 +228,21 @@ Where $1 is a numerical placeholder (that you can iterate and discover every use
 'or substring(/users/user[position()=1]/username,1,1)='c
 ```
 
+## Defences
 
+Always filter input data before providing it to XPath queries.
+
+* filter out non-alphanumerical characters
+
+## References
+
+* http://www.w3.org/XML/
+* https://msdn.microsoft.com/en-us/library/ms256177(v=vs.110).aspx
+* https://www.w3schools.com/xml/xpath_syntax.asp
+* http://code.google.com/p/xpath-blind-explorer/
+* http://www.w3schools.com/xml/default.asp
+* http://www.w3.org/TR/xpath-30/
+* https://msdn.microsoft.com/en-us/library/ms256086(v=vs.110).aspx
+* https://github.com/orf/xcat
+* https://www.owasp.org/index.php/Testing_for_XPath_Injection_(OTG-INPVAL-010)
+* https://www.owasp.org/index.php/Blind_XPath_Injection
