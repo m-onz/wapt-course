@@ -29,6 +29,7 @@ sqlmap
 
 * https://tomforb.es/xcat-1.0-released-or-xpath-injection-issues-are-severely-underrated/
 * https://github.com/orf/xcat
+* https://code.google.com/archive/p/xpath-blind-explorer/downloads (windows only?)
 
 ## SSRF
 
