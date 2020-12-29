@@ -60,9 +60,40 @@ XPath (XML Path Language) is a standard language used to query and navigate XML 
 
 XPath makes use of path expressions to select nodes from an XML document.
 
-```xpath
-//user[username/text()='<USERNAME>' and password/text()='<PASSWORD']
+## XPath query example
+
+```
+//user[username/text()='<USERNAME>' and password/text()='<PASSWORD>']
 ```
 
 Where `<USERNAME>` and `<PASSWORD` are input values, inserted by the user, therefore, they should be sanitized before being used.
+
+## XPath syntax
+
+* `/:` select the document node
+* `//` select all nodes (that match the selection)
+* `node_name:` selects all teh nodes with specified node_name
+* `@` i.e /@id to select all attributes named id
+* [element or condition]: select all nodes that match
+
+## XPath queries
+
+### Get all users
+```
+//user
+```
+### Get child elements
+
+ ```
+ /users//username
+ ```
+### Get by id attribute
+```
+//user[@id='1']/username
+```
+### Get by attribute value
+```
+//user[username/text()='monz' and password/text()='pass']
+```
+
 
