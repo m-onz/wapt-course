@@ -15,7 +15,7 @@ sqlmap
 
 * https://github.com/lanjelot/PayloadsAllTheThings
 
-## XSS
+## mutation XSS
 
 * https://html5sec.org/innerhtml/?compact#hello
 * XSS prevention https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.md
